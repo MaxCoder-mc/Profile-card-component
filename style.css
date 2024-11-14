@@ -1,0 +1,219 @@
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+:root {
+  /* ## Colors */
+
+  --Dark-cyan: #19a2ae;
+  --Very-dark-desaturated-blue: #2d3248;
+  --Dark-grayish-blue: #6a6f81;
+  --Dark-gray: #969696;
+
+  /* ## Typography */
+  --font: "Kumbh Sans", sans-serif;
+
+  /* ## Spacing */
+  --XL-64: calc((64 / 16) * 1rem);
+  --L-40: calc((40 / 16) * 1rem);
+  --M-32: calc((32 / 16) * 1rem);
+  --S-24: calc((24 / 16) * 1rem);
+  --XS-20: calc((20 / 16) * 1rem);
+
+  /* mobile */
+  --Card-Width: calc((326 / 16) * 1rem);
+}
+/**************************************/
+/********** GENERAL SETTINGS **********/
+/**************************************/
+html {
+  overflow: hidden;
+}
+span {
+  display: inline-block;
+}
+
+body {
+  background-color: var(--Dark-cyan);
+  color: var(--Dark-grayish-blue);
+  font-family: var(--font);
+
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  position: relative;
+  overflow: hidden;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: absolute;
+  width: calc((622 / 16) * 1rem);
+  height: calc((621 / 16) * 1rem);
+  z-index: -1;
+  opacity: 0.45;
+}
+body::before {
+  background: url("./images/bg-pattern-top.svg") no-repeat;
+  background-size: contain;
+
+  top: 0;
+  left: 0;
+  transform: rotate(135deg) translate(-40%, -35%);
+  transform-origin: top left;
+}
+body::after {
+  background: url("./images/bg-pattern-bottom.svg") no-repeat;
+  background-size: contain;
+
+  bottom: 0;
+  right: 0;
+  transform: translate(65%, 50%);
+}
+/**************************************/
+
+/*********** CARD COMPONENT ***********/
+/**************************************/
+.card-component {
+  border-radius: 1rem;
+  overflow: hidden;
+  max-width: var(--Card-Width);
+  box-shadow: 0 3.125rem 6.25rem rgba(8, 70, 94, 0.5);
+
+  margin: var(--XL-64) var(--XS-20);
+}
+
+/************ CARD CONTENT ************/
+/**************************************/
+.card-content {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.profile-picture {
+  display: inline-block;
+  border-radius: 5rem;
+  border: 5px solid white;
+  overflow: hidden;
+  margin-top: -3rem;
+  margin-bottom: 1rem;
+}
+
+.profile-text {
+  font-size: calc((18 / 16) * 1rem);
+  text-align: center;
+  padding-bottom: var(--S-24);
+  margin-bottom: var(--S-24);
+  border-bottom: 1px solid #e8e9ec;
+  align-self: stretch;
+}
+.name {
+  font-weight: 700;
+  color: var(--Very-dark-desaturated-blue);
+  padding-right: 0.5rem;
+}
+.place {
+  font-size: calc((14 / 16) * 1rem);
+  color: var(--Dark-gray);
+  padding-top: 0.3rem;
+}
+
+/************ CARD DETAILS ************/
+/**************************************/
+.card-details {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  gap: var(--L-40);
+  margin-bottom: var(--S-24);
+}
+.item span {
+  display: block;
+  text-align: center;
+}
+.num {
+  font-size: calc((18 / 16) * 1rem);
+  font-weight: 700;
+  color: var(--Very-dark-desaturated-blue);
+}
+.type {
+  font-size: calc((10 / 16) * 1rem);
+  color: var(--Dark-gray);
+  letter-spacing: 1.5px;
+}
+
+/*****************************/
+/********** QUERIES **********/
+/*****************************/
+@media (min-width: 62rem) {
+  :root {
+    --Card-Width: calc((350 / 16) * 1rem);
+  }
+  body::before,
+  body::after {
+    width: calc((978 / 16) * 1rem);
+    height: calc((976 / 16) * 1rem);
+  }
+  body::before {
+    transform: translate(-28%, -50%);
+  }
+  body::after {
+    transform: translate(24%, 65%);
+  }
+}
